@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Job | CareerConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2 class="logo">CareerConnect</h2>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/jobs">Find Jobs</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="job-card">
+
+            <h1>Apply for {{ job.title }}</h1>
+
+            <p><strong>Company:</strong> {{ job.company }}</p>
+            <p><strong>Location:</strong> {{ job.location }}</p>
+
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
+            {% if success %}
+                <p style="color: green;">{{ success }}</p>
+            {% else %}
+                <form method="POST"
+                      action="{{ url_for('apply_job', job_id=job.id) }}">
+
+                    <p>
+                        <label for="resume_link">Resume Link</label><br>
+                        <input
+                            type="url"
+                            id="resume_link"
+                            name="resume_link"
+                            placeholder="https://example.com/resume.pdf"
+                            required>
+                    </p>
+
+                    <p>
+                        <label for="cover_letter">Cover Letter</label><br>
+                        <textarea
+                            id="cover_letter"
+                            name="cover_letter"
+                            rows="6"
+                            placeholder="Why are you suitable for this job?"
+                            required></textarea>
+                    </p>
+
+                    <button type="submit">Submit Application</button>
+                </form>
+            {% endif %}
+
+            <p>
+                <a href="{{ url_for('job_details', job_id=job.id) }}">
+                    Back to Job Details
+                </a>
+            </p>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 CareerConnect | Job Portal & ATS</p>
+    </footer>
+
+</body>
+</html>

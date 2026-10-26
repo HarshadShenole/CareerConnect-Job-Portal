@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="{{ url_for('register') }}">Create Account</a>
+    <title>Job Portal & ATS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+   <a href="{{ url_for('login') }}" class="login-btn">Login</a>
+    <a href="{{ url_for('register') }}">Register</a>
+
+    <nav class="navbar">
+        <h2 class="logo">CareerConnect</h2>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#jobs">Find Jobs</a>
+            <a href="#categories">Categories</a>
+            <a href="#login">Login</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Find Your Dream Job Today</h1>
+
+        <p>Discover opportunities that match your skills.</p>
+
+        <form class="search-form" action="/jobs" method="GET">
+            <input
+                type="text"
+                name="keyword"
+                placeholder="Job title or skill">
+
+            <input
+                type="text"
+                name="location"
+                placeholder="Enter location">
+
+            <button type="submit">Search Jobs</button>
+        </form>
+    </section>
+
+    <section id="categories" class="section">
+        <h2>Popular Categories</h2>
+
+        <div class="category-list">
+            <div class="category">Python Developer</div>
+            <div class="category">Data Science</div>
+            <div class="category">Web Development</div>
+            <div class="category">Software Testing</div>
+        </div>
+    </section>
+
+    <section id="jobs" class="section">
+        <h2>Featured Jobs</h2>
+
+        <div class="job-card">
+            <h3>Python Developer</h3>
+            <p>Company: Tech Solutions</p>
+            <p>Location: Pune</p>
+            <p>Skills: Python, Flask, SQL</p>
+            <button type="button">View Details</button>
+        </div>
+
+        <div class="job-card">
+            <h3>Junior Data Analyst</h3>
+            <p>Company: DataWorks</p>
+            <p>Location: Bengaluru</p>
+            <p>Skills: Python, Excel, SQL</p>
+            <button type="button">View Details</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 CareerConnect | Job Portal & ATS</p>
+    </footer>
+
+
+</body>
+</html
+
+
+

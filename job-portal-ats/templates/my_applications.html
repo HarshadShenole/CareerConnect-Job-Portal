@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Applications | CareerConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2 class="logo">CareerConnect</h2>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/jobs">Find Jobs</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="job-card">
+            <h1>My Applications</h1>
+
+            {% if applications %}
+                {% for application in applications %}
+                    <div class="job-card">
+                        <h2>{{ application.title }}</h2>
+
+                        <p>
+                            <strong>Company:</strong>
+                            {{ application.company }}
+                        </p>
+
+                        <p>
+                            <strong>Location:</strong>
+                            {{ application.location }}
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            {{ application.status }}
+                        </p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>You have not applied for any jobs yet.</p>
+                <a href="/jobs">Explore Jobs</a>
+            {% endif %}
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 CareerConnect | Job Portal & ATS</p>
+    </footer>
+
+</body>
+</html>

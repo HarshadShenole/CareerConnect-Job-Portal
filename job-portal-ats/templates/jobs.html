@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Search Results</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2 class="logo">CareerConnect</h2>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/jobs">Find Jobs</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <h1>Job Search Results</h1>
+
+        <form class="search-form" action="/jobs" method="GET">
+            <input
+                type="text"
+                name="keyword"
+                placeholder="Job title or skill"
+                value="{{ keyword }}">
+
+            <input
+                type="text"
+                name="location"
+                placeholder="Location"
+                value="{{ location }}">
+
+            <button type="submit">Search</button>
+        </form>
+
+        <p>Jobs found: {{ jobs|length }}</p>
+
+        
+{% for job in jobs %}
+    <div class="job-card">
+        <h3>{{ job.title }}</h3>
+
+        <p>Company: {{ job.company }}</p>
+        <p>Location: {{ job.location }}</p>
+        <p>Skills: {{ job.skills }}</p>
+
+        <a href="{{ url_for('job_details', job_id=job.id) }}"
+           class="details-button">
+            View Details
+        </a>
+    </div>
+{% else %}
+    <p>No matching jobs found. Try another keyword or location.</p>
+{% endfor %}
+
+
+    </section>
+
+</body>
+</html>

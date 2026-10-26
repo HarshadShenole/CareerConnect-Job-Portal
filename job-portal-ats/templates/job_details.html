@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ job.title }} | CareerConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <h2 class="logo">CareerConnect</h2>
+
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('job_search') }}">Find Jobs</a>
+
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="job-card">
+
+            <h1>{{ job.title }}</h1>
+
+            <p>
+                <strong>Company:</strong>
+                {{ job.company }}
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                {{ job.location }}
+            </p>
+
+            <p>
+                <strong>Required Skills:</strong>
+                {{ job.skills }}
+            </p>
+
+            <p>
+                <strong>Job ID:</strong>
+                {{ job.id }}
+            </p>
+
+            {% if session.get('user_id') %}
+                <p>
+                    <a href="{{ url_for('apply_job', job_id=job.id) }}"
+                       class="btn">
+                        Apply Now
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    <a href="{{ url_for('login') }}"
+                       class="btn">
+                        Login to Apply
+                    </a>
+                </p>
+            {% endif %}
+
+            <p>
+                <a href="{{ url_for('job_search') }}">
+                    &larr; Back to Jobs
+                </a>
+            </p>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 CareerConnect | Job Portal & ATS</p>
+    </footer>
+
+</body>
+</html>
